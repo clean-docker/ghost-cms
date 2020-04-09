@@ -1,0 +1,8 @@
+/content/tmp/*
+/content/data/*
+/content/logs/*
+/content/themes/casper
+/content/images/**/*
+/content/adapters/storage/**/*
+/content/adapters/scheduling/**/*
+/mysql/*

@@ -1,0 +1,41 @@
+{
+  "url": "https://<domain>",
+  "server": {
+      "port": 2368,
+      "host": "0.0.0.0"
+    },
+    "database": {
+      "client": "mysql",
+      "connection": {
+          "host": "db",
+          "user": "root",
+          "password": "ASTiMpleSTAl",
+          "database": "ghost",
+          "charset": "utf8"
+      }
+    },
+    "mail": {
+      "from": "'MyDomain' <postmaster@mail.mydomain.com>",
+      "transport": "SMTP",
+      "options": {
+        "service": "Mailgun",
+        "host": "smtp.mailgun.org",
+        "port": 465,
+        "secureConnection": true,
+        "auth": {
+          "user": "postmaster@mail.mydomain.com",
+          "pass": "7adsf7f8asd8f6as7asd7f-123sdf8-asdf87fa"
+        }
+      }
+    },
+  "logging": {
+      "transports": [
+            "file",
+            "stdout"
+          ]
+    },
+  "process": "systemd",
+  "paths": {
+      "contentPath": "/var/lib/ghost/content"
+    }
+}
