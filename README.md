@@ -12,9 +12,10 @@ These are some reassons why use this Docker Compose in your production environme
 
 ## Stack
 
+- Ubuntu 20.04 LTS
 - Ghost CMS (Last version)
-- MySQL 5.7
-- NGINX
+- MariaDB latest
+- Nginx alpine image
 - Docker
 
 ## How start using [Digital Ocean](https://m.do.co/c/c3a8c6b3f90b)?
