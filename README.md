@@ -25,7 +25,7 @@ Then copy this command below and **change the mydomain.com to your domain** and 
 
 ```bash
 apt update -y && apt install curl git -y
-curl -s https://raw.githubusercontent.com/clean-docker/ghost-cms/master/dc | bash -s setup mydomain.com
+curl -s https://raw.githubusercontent.com/woosungchoi/ghost-cms/master/dc | bash -s setup mydomain.com
 ```
 
 ## How start using locally?
