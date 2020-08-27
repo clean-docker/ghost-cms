@@ -14,9 +14,9 @@ if [ "$1" == "update" ]; then
 fi
 
 if [ "$1" == "setup" ]; then
-  echo 'Updating system...' \
+  echo 'Setting system...' \
   && sudo apt upgrade -y \
-  && rm -rf ghost; git clone https://github.com/clean-docker/ghost-cms ghost \
+  && rm -rf ghost; git clone https://github.com/woosungchoi/ghost-cms ghost \
   && cd ghost \
   && sed -e "s/<domain>/$2/g" docker-compose.yml \
   && sed -e "s/<domain>/$2/g" nginx/default.conf \
@@ -40,6 +40,28 @@ if [ "$1" == "setup" ]; then
   echo 'Configuring cron...' \
   && echo "0 23 * * * certbot certonly -n --webroot -w /usr/share/nginx/html -d $2 --deploy-hook='docker exec ghost_nginx_1 nginx -s reload'" >> mycron \
   && sudo crontab mycron; rm mycron \
+  && echo 'Starting Docker...' \
+  && sudo docker-compose up -d \
+  && echo 'Done! 🎉' \
+  && echo 'by Rafael Correa Gomes' \
+  && echo 'Access your host: https://'; echo $2;
+fi
+
+if [ "$1" == "update" ]; then
+  echo 'Updating system...' \
+  && sudo apt upgrade -y \
+  && rm -rf ghost; git clone https://github.com/woosungchoi/ghost-cms ghost \
+  && cd ghost \
+  && sed -e "s/<domain>/$2/g" docker-compose.yml \
+  && sed -e "s/<domain>/$2/g" nginx/default.conf \
+  && sed -e "s/<domain>/$2/g" config.production.json \
+  && echo 'Installing SSL...' \
+  && sudo apt install software-properties-common -y \
+  && sudo apt update -y \
+  && sudo apt install certbot -y \
+  && sudo certbot certonly --standalone -d $2 \
+  && echo 'Preparing Ghost...' \
+  && mkdir ./content; mkdir ./mysql; mkdir -p /usr/share/nginx/html; \
   && echo 'Starting Docker...' \
   && sudo docker-compose up -d \
   && echo 'Done! 🎉' \
