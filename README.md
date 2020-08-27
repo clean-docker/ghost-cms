@@ -38,7 +38,7 @@ In your local environment you need to have installed:
 After clone this repository, you can access the `dev` folder to be able to run the local dev environment using this command below.
 
 ```bash
-git clone https://github.com/clean-docker/ghost-cms.git ghost
+git clone https://github.com/woosungchoi/ghost-cms.git ghost
 cd ghost/dev
 docker-compose up -d
 ```
@@ -53,4 +53,4 @@ docker-compose up -d
 | `./dc stop`  | Stop all containers  |
 | `./dc update`  | Get Ghost updates and restart containers |
 
-Thank you all [contributor](https://github.com/woosungchoi/ghost-cms/graphs/contributors)!
+Thank you all [contributor](https://github.com/clean-docker/ghost-cms/graphs/contributors)!
