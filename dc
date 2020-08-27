@@ -18,9 +18,9 @@ if [ "$1" == "setup" ]; then
   && sudo apt upgrade -y \
   && rm -rf ghost; git clone https://github.com/woosungchoi/ghost-cms ghost \
   && cd ghost \
-  && sed -e "s/<domain>/$2/g" docker-compose.yml \
-  && sed -e "s/<domain>/$2/g" nginx/default.conf \
-  && sed -e "s/<domain>/$2/g" config.production.json \
+  && sed -i "s/<domain>/$2/g" docker-compose.yml \
+  && sed -i "s/<domain>/$2/g" nginx/default.conf \
+  && sed -i "s/<domain>/$2/g" config.production.json \
   && echo 'Installing SSL...' \
   && sudo apt install software-properties-common -y \
   && sudo apt update -y \
