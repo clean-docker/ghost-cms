@@ -24,6 +24,7 @@ services:
     restart: always
     environment:
       - TZ=Asia/Seoul
+      - MYSQL_DATABASE= ghost
       - MYSQL_ROOT_PASSWORD= MyStrongPassword
     volumes:
       - ./data/dbdata:/var/lib/mysql
