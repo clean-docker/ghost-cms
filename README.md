@@ -53,4 +53,4 @@ docker-compose up -d
 | `./dc stop`  | Stop all containers  |
 | `./dc update`  | Get Ghost updates and restart containers |
 
-Thank you all [contributor](https://github.com/clean-docker/ghost-cms/graphs/contributors)!
+Thank you all [contributor](https://github.com/woosungchoi/ghost-cms/graphs/contributors)!
