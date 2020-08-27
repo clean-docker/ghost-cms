@@ -9,7 +9,7 @@
       "connection": {
           "host": "db",
           "user": "root",
-          "password": "ASTiMpleSTAl",
+          "password": "MyStrongPassword",
           "database": "ghost",
           "charset": "utf8"
       }
