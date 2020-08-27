@@ -2,7 +2,7 @@
 
 These are some reassons why use this Docker Compose in your production environment.
 
-☝️ 1 command to install
+☝️ 3 command to install
 
 👨‍💻 Ready to production and local development
 
@@ -22,9 +22,10 @@ These are some reassons why use this Docker Compose in your production environme
 
 You can prepare a simple [$5 Droplet](https://m.do.co/c/c3a8c6b3f90b) to run it, using [my link](https://m.do.co/c/c3a8c6b3f90b) I'm giving $100 to start your server.
 
-Then copy this command below and **change the mydomain.com to your domain** and run it inside your new server. Make sure that your domain is pointing to your server IP.
+Then copy this command below and **change the timezone to your location** and **change the mydomain.com to your domain** and run it inside your new server. Make sure that your domain is pointing to your server IP.
 
 ```bash
+sudo timedatectl set-timezone Asia/Seoul
 sudo apt update -y && sudo apt install curl git -y
 curl -s https://raw.githubusercontent.com/woosungchoi/ghost-cms/master/dc | bash -s setup mydomain.com
 ```
