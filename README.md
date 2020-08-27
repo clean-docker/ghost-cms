@@ -26,7 +26,7 @@ Then copy this command below and **change the timezone to your location** and **
 
 ```bash
 sudo timedatectl set-timezone Asia/Seoul
-sudo apt update -y && sudo apt install curl git -y
+sudo apt update -y && sudo apt upgrade -y && sudo apt install curl git -y
 curl -s https://raw.githubusercontent.com/woosungchoi/ghost-cms/master/dc | bash -s setup mydomain.com
 ```
 
