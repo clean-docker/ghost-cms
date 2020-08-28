@@ -17,11 +17,11 @@ if [ "$1" == "setup" ]; then
   && rm -rf ghost; git clone https://github.com/woosungchoi/ghost-cms ghost \
   && cd ghost \
   && sed -i "s/<domain>/$2/g" docker-compose.yml \
-  && sed -i "s/<email>/$3/g" docker-compose.yml \
   && sed -i "s/<domain>/$2/g" docker-compose.production.yml \
+  && sed -i "s/<email>/$3/g" docker-compose.yml \
+  && sed -i "s/<email>/$3/g" config.production.json \
   && sed -i "s/<domain>/$2/g" nginx/default.conf \
   && sed -i "s/<domain>/$2/g" config.production.json \
-  && sed -i "s/<email>/$3/g" config.production.json \
   && echo 'Installing Docker...' \
   && sudo apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y \
   && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - \
