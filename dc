@@ -42,12 +42,12 @@ if [ "$1" == "setup" ]; then
   echo 'Configuring cron...' \
   && echo "0 23 * * * docker start certbot && docker restart nginx >> /var/log/docker_cron.log 2>&1" >> mycron \
   && sudo crontab mycron; rm mycron \
-  && echo 'Starting Docker...' \
+  && echo 'Starting Docker certbot and db...' \
   && sudo docker-compose up -d certbot db \
-  echo "Waiting 15 secs for db to build databases...." \
+  echo "Waiting 15 secs for Mariadb to build databases..." \
   && sleep 15 \
   && sudo docker-compose up -d ghost \
-  echo "Waiting 30 secs for ghost to install ghost files...." \
+  echo "Waiting 30 secs for Ghost to install ghost files..." \
   && sleep 30 \
   echo "Now starting Nginx!" \
   && sudo docker-compose up -d nginx \
