@@ -14,7 +14,7 @@ fi
 
 if [ "$1" == "setup" ]; then
   echo 'Setting system...' \
-  && rm -rf ghost; git clone https://github.com/woosungchoi/ghost-cms ghost \
+  && rm -rf ghost; git clone -b staging https://github.com/woosungchoi/ghost-cms ghost \
   && cd ghost \
   && sed -i "s/<domain>/$2/g" docker-compose.yml \
   && sed -i "s/<domain>/$2/g" docker-compose.production.yml \
