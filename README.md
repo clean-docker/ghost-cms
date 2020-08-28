@@ -15,7 +15,7 @@ These are some reassons why use this Docker Compose in your production environme
 - Ubuntu 20.04 LTS
 - Ghost CMS lastest docker image(alpine)
 - MariaDB latest docker imgae
-- Nginx latest docker alpine image(alpine)
+- Nginx latest docker image(alpine)
 - Letsencrypt latest docker image
 - Docker
 - Docker-compose
