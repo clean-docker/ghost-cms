@@ -49,7 +49,7 @@ if [ "$1" == "setup" ]; then
   && sudo docker-compose up -d ghost \
   && echo 'Waiting 30 secs for Ghost to install ghost files...' \
   && sleep 30 \
-  echo 'Now starting Nginx!' \
+  && echo 'Now starting Nginx!' \
   && sudo docker-compose up -d nginx \
   && echo 'Done! 🎉' \
   && echo 'by Rafael Correa Gomes and Woosung Choi' \
