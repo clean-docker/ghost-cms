@@ -1,0 +1,43 @@
+version: '3'
+services:
+
+  db:
+    image: mariadb:latest
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_db_password
+      - MYSQL_USER=ghost
+      - MYSQL_PASSWORD=ghost_db_password
+      - MYSQL_DATABASE=ghost_production
+    volumes:
+      - ./data/dbdata:/var/lib/mysql
+
+  ghost:
+    image: ghost:alpine
+    restart: unless-stopped
+    depends_on:
+      - db
+    volumes:
+      - ./content:/var/lib/ghost/content
+      - ./config.production.json:/var/lib/ghost/config.production.json
+  
+  certbot:
+    image: certbot/certbot:latest
+    container_name: certbot
+    volumes:
+      - ./ssl/:/etc/letsencrypt/
+    command: renew
+   
+  nginx:
+    image: nginx:alpine
+    restart: unless-stopped
+    depends_on:
+      - ghost
+      - certbot
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./ssl/:/etc/letsencrypt/
+      - /usr/share/nginx/html:/usr/share/nginx/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
