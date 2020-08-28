@@ -15,7 +15,6 @@ fi
 
 if [ "$1" == "setup" ]; then
   echo 'Setting system...' \
-  && sudo apt upgrade -y \
   && rm -rf ghost; git clone https://github.com/woosungchoi/ghost-cms ghost \
   && cd ghost \
   && sed -e "s/<domain>/$2/g" docker-compose.yml \
