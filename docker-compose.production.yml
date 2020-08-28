@@ -37,7 +37,6 @@ services:
     restart: unless-stopped
     depends_on:
       - ghost
-      - certbot
     ports:
       - "80:80"
       - "443:443"
