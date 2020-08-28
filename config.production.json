@@ -2,20 +2,20 @@
   "url": "https://<domain>",
   "server": {
       "port": 2368,
-      "host": "0.0.0.0"
+      "host": "ghost"
     },
     "database": {
       "client": "mysql",
       "connection": {
           "host": "db",
-          "user": "root",
-          "password": "MyStrongPassword",
-          "database": "ghost",
+          "user": "ghost",
+          "password": "ghost_db_password",
+          "database": "ghost_production",
           "charset": "utf8"
       }
     },
     "mail": {
-      "from": "'MyDomain' <postmaster@mail.mydomain.com>",
+      "from": "'MyDomain' <<email>>",
       "transport": "SMTP",
       "options": {
         "service": "Mailgun",
@@ -23,7 +23,7 @@
         "port": 465,
         "secureConnection": true,
         "auth": {
-          "user": "postmaster@mail.mydomain.com",
+          "user": "<email>",
           "pass": "7adsf7f8asd8f6as7asd7f-123sdf8-asdf87fa"
         }
       }
