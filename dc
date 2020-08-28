@@ -32,8 +32,7 @@ if [ "$1" == "setup" ]; then
   && sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose \
   && sudo chmod +x /usr/local/bin/docker-compose \
   && echo 'Installing SSL...' \
-  && mkdir ./ssl; \
-  sudo docker-compose up -d \
+  && sudo docker-compose up -d \
   && echo 'Preparing docker-compose up' \
   && sudo docker-compose down -v certbot \
   && mv docker-compose.yml docker-compose.ssl.yml \
