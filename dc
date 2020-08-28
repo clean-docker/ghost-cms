@@ -38,7 +38,7 @@ if [ "$1" == "setup" ]; then
   && mv docker-compose.yml docker-compose.ssl.yml \
   && mv docker-compose.production.yml docker-compose.yml \
   && echo 'Preparing Ghost...' \
-  && mkdir ./content; mkdir ./mysql; sudo mkdir -p /usr/share/nginx/html; \
+  && mkdir ./content; sudo mkdir -p /usr/share/nginx/html; \
   echo 'Configuring cron...' \
   && echo "0 23 * * * docker start certbot && docker restart nginx >> /var/log/docker_cron.log 2>&1" >> mycron \
   && sudo crontab mycron; rm mycron \
