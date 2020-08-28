@@ -26,7 +26,7 @@ services:
     container_name: certbot
     volumes:
       - ./ssl/:/etc/letsencrypt/
-    command: renew
+    command: certonly -n --webroot -w /usr/share/nginx/html -d <domain>
    
   nginx:
     image: nginx:alpine
