@@ -19,13 +19,10 @@ if [ "$1" == "setup" ]; then
   && rm -rf ghost; git clone https://github.com/woosungchoi/ghost-cms ghost \
   && cd ghost \
   && sed -e "s/<domain>/$2/g" docker-compose.yml \
+  && sed -e "s/<email>/$3/g" docker-compose.yml \
   && sed -e "s/<domain>/$2/g" nginx/default.conf \
   && sed -e "s/<domain>/$2/g" config.production.json \
-  && echo 'Installing SSL...' \
-  && sudo apt install software-properties-common -y \
-  && sudo apt update -y \
-  && sudo apt install certbot -y \
-  && sudo certbot certonly --standalone -d $2 -m $3 --no-eff-email --agree-tos \
+  && sed -e "s/<email>/$3/g" config.production.json \
   && echo 'Installing Docker...' \
   && sudo apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y \
   && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - \
@@ -35,14 +32,21 @@ if [ "$1" == "setup" ]; then
   && echo 'Installing Docker Compose...' \
   && sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose \
   && sudo chmod +x /usr/local/bin/docker-compose \
+  && echo 'Installing SSL...' \
+  && mkdir ./ssl; \
+  && sudo docker-compose up -d \
+  && echo 'Preparing docker-compose up' \
+  && sudo docker-compose down -v certbot \
+  && mv docker-compose.yml docker-compose.ssl.yml \
+  && mv docker-compose.production.yml docker-compose.yml \
   && echo 'Preparing Ghost...' \
   && mkdir ./content; mkdir ./mysql; sudo mkdir -p /usr/share/nginx/html; \
   echo 'Configuring cron...' \
-  && echo "0 23 * * * certbot certonly -n --webroot -w /usr/share/nginx/html -d $2 --deploy-hook='docker exec ghost_nginx_1 nginx -s reload'" >> mycron \
+  && echo "0 23 * * * docker start certbot && docker restart nginx" >> mycron \
   && sudo crontab mycron; rm mycron \
   && echo 'Starting Docker...' \
   && sudo docker-compose up -d \
   && echo 'Done! 🎉' \
-  && echo 'by Rafael Correa Gomes' \
+  && echo 'by Rafael Correa Gomes and Woosung Choi' \
   && echo 'Access your host: https://'; echo $2;
 fi
