@@ -40,7 +40,7 @@ if [ "$1" == "setup" ]; then
   && echo 'Preparing Ghost...' \
   && mkdir ./content; mkdir ./mysql; sudo mkdir -p /usr/share/nginx/html; \
   echo 'Configuring cron...' \
-  && echo "0 23 * * * docker start certbot && docker restart nginx" >> mycron \
+  && echo "0 23 * * * docker start certbot && docker restart nginx >> /var/log/docker_cron.log 2>&1" >> mycron \
   && sudo crontab mycron; rm mycron \
   && echo 'Starting Docker...' \
   && sudo docker-compose up -d \
