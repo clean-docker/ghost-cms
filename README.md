@@ -27,7 +27,7 @@ You can prepare a simple [$5 Droplet](https://m.do.co/c/c3a8c6b3f90b) to run it,
 Then copy this command below and **change the mydomain.com to your domain** and **change the email@email.com to your email address** and run it inside your new server. Make sure that your domain is pointing to your server IP.
 
 ```bash
-sudo apt update -y && sudo apt upgrade -y && sudo apt install curl git -y
+sudo apt update -y && sudo apt upgrade -y && sudo apt install curl git -y && sudo apt autoremove -y
 curl -s https://raw.githubusercontent.com/woosungchoi/ghost-cms/master/dc | bash -s setup mydomain.com email@email.com
 ```
 
