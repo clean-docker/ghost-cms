@@ -13,10 +13,12 @@ These are some reassons why use this Docker Compose in your production environme
 ## Stack
 
 - Ubuntu 20.04 LTS
-- Ghost CMS (Last version)
-- MariaDB latest
-- Nginx alpine image
+- Ghost CMS lastest docker image(alpine)
+- MariaDB latest docker imgae
+- Nginx latest docker alpine image(alpine)
+- Letsencrypt latest docker image
 - Docker
+- Docker-compose
 
 ## How start using [Digital Ocean](https://m.do.co/c/c3a8c6b3f90b)?
 
