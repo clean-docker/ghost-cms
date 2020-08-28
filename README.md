@@ -2,7 +2,7 @@
 
 These are some reassons why use this Docker Compose in your production environment.
 
-☝️ 1 command to install
+☝️ 2 command to install
 
 👨‍💻 Ready to production and local development
 
