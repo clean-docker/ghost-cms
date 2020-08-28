@@ -13,10 +13,12 @@ These are some reassons why use this Docker Compose in your production environme
 ## Stack
 
 - Ubuntu 20.04 LTS
-- Ghost CMS (Last version)
-- MariaDB latest
-- Nginx alpine image
+- Ghost CMS lastest docker image(alpine)
+- MariaDB latest docker imgae
+- Nginx latest docker image(alpine)
+- Letsencrypt latest docker image
 - Docker
+- Docker-compose
 
 ## How start using [Digital Ocean](https://m.do.co/c/c3a8c6b3f90b)?
 
@@ -25,7 +27,7 @@ You can prepare a simple [$5 Droplet](https://m.do.co/c/c3a8c6b3f90b) to run it,
 Then copy this command below and **change the mydomain.com to your domain** and **change the email@email.com to your email address** and run it inside your new server. Make sure that your domain is pointing to your server IP.
 
 ```bash
-sudo apt update -y && sudo apt upgrade -y && sudo apt install curl git -y
+sudo apt update -y && sudo apt upgrade -y && sudo apt install curl git -y && sudo apt autoremove -y
 curl -s https://raw.githubusercontent.com/woosungchoi/ghost-cms/master/dc | bash -s setup mydomain.com email@email.com
 ```
 
