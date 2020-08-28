@@ -8,14 +8,12 @@ if [ "$1" == "stop" ]; then
     docker-compose stop
 fi
 
-if [ "$1" == "update" ]; then
-    docker-compose down
-    docker-compose pull && docker-compose up -d
+if [ "$1" == "update" ]; then    
+    docker-compose pull && docker-compose down && docker-compose up -d
 fi
 
 if [ "$1" == "setup" ]; then
   echo 'Setting system...' \
-  && sudo apt upgrade -y \
   && rm -rf ghost; git clone https://github.com/woosungchoi/ghost-cms ghost \
   && cd ghost \
   && sed -e "s/<domain>/$2/g" docker-compose.yml \
@@ -42,7 +40,7 @@ if [ "$1" == "setup" ]; then
   && echo 'Preparing Ghost...' \
   && mkdir ./content; mkdir ./mysql; sudo mkdir -p /usr/share/nginx/html; \
   echo 'Configuring cron...' \
-  && echo "0 23 * * * docker start certbot && docker restart nginx" >> mycron \
+  && echo "0 23 * * * docker start certbot && docker restart nginx >> /var/log/docker_cron.log 2>&1" >> mycron \
   && sudo crontab mycron; rm mycron \
   && echo 'Starting Docker...' \
   && sudo docker-compose up -d \
