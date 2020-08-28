@@ -46,5 +46,5 @@ if [ "$1" == "setup" ]; then
   && sudo docker-compose up -d \
   && echo 'Done! 🎉' \
   && echo 'by Rafael Correa Gomes and Woosung Choi' \
-  && echo 'Access your host: https://'; echo $2;
+  && echo 'Access your host: https://'$2;
 fi
