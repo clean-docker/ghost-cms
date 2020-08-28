@@ -18,6 +18,7 @@ if [ "$1" == "setup" ]; then
   && cd ghost \
   && sed -e "s/<domain>/$2/g" docker-compose.yml \
   && sed -e "s/<email>/$3/g" docker-compose.yml \
+  && sed -e "s/<domain>/$2/g" docker-compose.production.yml \
   && sed -e "s/<domain>/$2/g" nginx/default.conf \
   && sed -e "s/<domain>/$2/g" config.production.json \
   && sed -e "s/<email>/$3/g" config.production.json \
