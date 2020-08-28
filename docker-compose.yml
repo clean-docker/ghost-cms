@@ -1,0 +1,9 @@
+version: '3'
+services:
+
+  certbot:
+    image: certbot/certbot:latest
+    container_name: certbot
+    volumes:
+      - ./ssl/:/etc/letsencrypt/
+    command: certonly --standalone -d <domain> -m <email> --no-eff-email --agree-tos
