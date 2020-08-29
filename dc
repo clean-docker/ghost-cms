@@ -42,6 +42,7 @@ if [ "$1" == "setup" ]; then
   echo 'Configuring cron...' \
   && echo "0 23 * * * docker start certbot && docker restart nginx >> /var/log/docker_cron.log 2>&1" >> mycron \
   && sudo crontab mycron; rm mycron \
+  && sudo chmod +x dc \
   && echo 'Starting Docker certbot and db...' \
   && sudo docker-compose up -d certbot db \
   && echo 'Waiting 10 secs for Mariadb to build databases...' \
