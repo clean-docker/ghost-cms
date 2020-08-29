@@ -9,7 +9,7 @@ if [ "$1" == "stop" ]; then
 fi
 
 if [ "$1" == "update" ]; then    
-    docker-compose pull && docker-compose down && docker-compose up -d
+    docker-compose pull && docker-compose up -d
 fi
 
 if [ "$1" == "setup" ]; then
