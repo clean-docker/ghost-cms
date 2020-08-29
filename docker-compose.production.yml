@@ -29,7 +29,7 @@ services:
     volumes:
       - ./ssl/:/etc/letsencrypt/
       - /usr/share/nginx/html:/usr/share/nginx/html
-    command: certonly -n --webroot -w /usr/share/nginx/html -d <domain>
+    command: certonly -n --webroot -w /usr/share/nginx/html -d <domain> -d www.<domain>
    
   nginx:
     image: nginx:alpine
