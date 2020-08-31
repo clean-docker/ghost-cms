@@ -41,7 +41,7 @@ sudo yum -y update && sudo yum install -y curl git
 ```
 
 ```bash
-curl -o dcc https://raw.githubusercontent.com/woosungchoi/ghost-cms/master/dcc && bash dcc setup && rm -f dcc
+curl -o dcc https://raw.githubusercontent.com/woosungchoi/ghost-cms/master/dcc | bash -s setup mydomain.com email@email.com
 ```
 
 ## How start using locally?
