@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+if [ "$1" == "start" ]; then
+    docker-compose start
+fi
+
+if [ "$1" == "stop" ]; then
+    docker-compose stop
+fi
+
+if [ "$1" == "update" ]; then    
+    docker-compose pull && docker-compose up -d
+fi
+
+if [ "$1" == "setup" ]; then
+  echo 'Setting system...' \
+  && rm -rf ghost; git clone https://github.com/woosungchoi/ghost-cms ghost \
+  && cd ghost \
+  && sed -i "s/<domain>/$2/g" docker-compose.yml \
+  && sed -i "s/<domain>/$2/g" docker-compose.production.yml \
+  && sed -i "s/<email>/$3/g" docker-compose.yml \
+  && sed -i "s/<email>/$3/g" config.production.json \
+  && sed -i "s/<domain>/$2/g" nginx/default.conf \
+  && sed -i "s/<domain>/$2/g" config.production.json \
+  && echo 'Installing Docker...' \
+  && sudo yum remove -y docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine \
+  && sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo \
+  && sudo dnf install -y --nobest docker-ce docker-ce-cli containerd.io \
+  && sudo systemctl start docker && sudo systemctl enable --now docker \
+  && if [ ! -f /usr/bin/docker-compose ] ; then
+        echo 'Installing Docker Compose...' \
+        && sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose \
+        && sudo chmod +x /usr/bin/docker-compose
+        else echo 'Skip Installing Docker Compose'
+     fi
+  echo 'Installing SSL...' \
+  && sudo docker-compose up \
+  && echo 'Preparing docker-compose up' \
+  && sudo docker-compose down -v \
+  && mv docker-compose.yml docker-compose.ssl.yml \
+  && mv docker-compose.production.yml docker-compose.yml \
+  && echo 'Preparing Ghost...' \
+  && mkdir ./content; sudo mkdir -p /usr/share/nginx/html; \
+  echo 'Configuring cron...' \
+  && echo "0 23 * * * docker start certbot && docker restart nginx >> /var/log/docker_cron.log 2>&1" >> mycron \
+  && sudo crontab mycron; rm mycron \
+  && sudo chmod +x dc \
+  && echo 'Starting Docker certbot and db...' \
+  && sudo docker-compose up -d certbot db \
+  && echo 'Waiting 10 secs for Mariadb to build databases...' \
+  && sleep 10 \
+  && sudo docker-compose up -d ghost \
+  && echo 'Waiting 20 secs for Ghost to install ghost files...' \
+  && sleep 20 \
+  && echo 'Now starting Nginx!' \
+  && sudo docker-compose up -d nginx \
+  && echo 'Done! 🎉' \
+  && echo 'by Rafael Correa Gomes and Woosung Choi' \
+  && echo 'Access your host: https://'$2;
+fi
