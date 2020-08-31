@@ -23,16 +23,15 @@ if [ "$1" == "setup" ]; then
   && sed -i "s/<domain>/$2/g" nginx/default.conf \
   && sed -i "s/<domain>/$2/g" config.production.json \
   && echo 'Installing Docker...' \
-  && sudo apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y \
-  && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - \
-  && sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" -y \
-  && sudo apt update -y \
-  && sudo apt install docker-ce docker-ce-cli containerd.io -y \
+  && sudo yum remove -y docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine \
+  && sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo \
+  && sudo dnf install -y --nobest docker-ce docker-ce-cli containerd.io \
+  && sudo systemctl start docker && sudo systemctl enable --now docker \
   && COMPOSE_VERSION=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep 'tag_name' | cut -d\" -f4) \
-  && if [ ! -f /usr/local/bin/docker-compose ] ; then
+  && if [ ! -f /usr/bin/docker-compose ] ; then
         echo 'Installing Docker Compose...' \
-        && sudo curl -L "https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose \
-        && sudo chmod +x /usr/local/bin/docker-compose
+        && sudo curl -L "https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose \
+        && sudo chmod +x /usr/bin/docker-compose
         else echo 'Skip Installing Docker Compose'
      fi
   echo 'Installing SSL...' \
