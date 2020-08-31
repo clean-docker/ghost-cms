@@ -28,9 +28,9 @@ if [ "$1" == "setup" ]; then
   && sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" -y \
   && sudo apt update -y \
   && sudo apt install docker-ce docker-ce-cli containerd.io -y \
-  && COMPOSE_VERSION=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep 'tag_name' | cut -d\" -f4) \
   && if [ ! -f /usr/local/bin/docker-compose ] ; then
         echo 'Installing Docker Compose...' \
+        && COMPOSE_VERSION=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep 'tag_name' | cut -d\" -f4) \
         && sudo curl -L "https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose \
         && sudo chmod +x /usr/local/bin/docker-compose
         else echo 'Skip Installing Docker Compose'
