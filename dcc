@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
 if [ "$1" == "start" ]; then
-    docker-compose start
+    sudo docker-compose start
 fi
 
 if [ "$1" == "stop" ]; then
-    docker-compose stop
+    sudo docker-compose stop
 fi
 
 if [ "$1" == "update" ]; then    
-    docker-compose pull && docker-compose up -d
+    sudo docker-compose pull && docker-compose up -d
 fi
 
 if [ "$1" == "setup" ]; then
@@ -43,7 +43,7 @@ if [ "$1" == "setup" ]; then
   && echo 'Preparing Ghost...' \
   && mkdir ./content; sudo mkdir -p /usr/share/nginx/html; \
   echo 'Configuring cron...' \
-  && echo "0 23 * * * docker start certbot && docker restart nginx >> /var/log/docker_cron.log 2>&1" >> mycron \
+  && echo "0 23 * * * docker start certbot && docker exec nginx nginx -s reload >> /var/log/docker_cron.log 2>&1" >> mycron \
   && sudo crontab mycron; rm mycron \
   && sudo chmod +x dc \
   && echo 'Starting Docker certbot and db...' \
