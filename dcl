@@ -14,7 +14,8 @@ fi
 
 if [ "$1" == "setup" ]; then
   echo 'Setting system...' \
-  && read -p "Which port do you want to access the web server on? (ex : 80) " WEB_PORT \
+  && read -p "[1/2] Enter your domain (ex:mydomain.com) : " DOMAIN
+  read -p "[2/2] Which port do you want to access the web server on? (ex : 80) " WEB_PORT \
   && rm -rf ghost; git clone https://github.com/woosungchoi/ghost-cms ghost \
   && cd ghost \
   && mv nginx/default.conf nginx/default.conf.production \
@@ -24,6 +25,8 @@ if [ "$1" == "setup" ]; then
   && mv config.production.json config.production.json.bak \
   && mv config.local.json config.production.json \
   && sed -i "s/<port>/$WEB_PORT/g" docker-compose.yml \
+  && sed -i "s/<domain>/$DOMAIN/g" nginx/default.conf \
+  && sed -i "s/<domain>/$DOMAIN/g" config.production.json \
   && echo 'Installing Docker...' \
   && sudo apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y \
   && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - \

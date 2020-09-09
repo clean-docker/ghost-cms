@@ -14,7 +14,8 @@ fi
 
 if [ "$1" == "setup" ]; then
   echo 'Setting system...' \
-  && read -p "Which port do you want to access the web server on? (ex : 80) " WEB_PORT \
+  && read -p "[1/2] Enter your domain (ex : localhost or mydomain.com) : " DOMAIN
+  read -p "[2/2] Which port do you want to access the web server on? (ex : 80) " WEB_PORT \
   && rm -rf ghost; git clone https://github.com/woosungchoi/ghost-cms ghost \
   && cd ghost \
   && mv nginx/default.conf nginx/default.conf.production \
@@ -25,6 +26,7 @@ if [ "$1" == "setup" ]; then
   && mv config.local.json config.production.json \
   && sed -i "s/<port>/$WEB_PORT/g" docker-compose.yml \
   && sed -i "s/<domain>/$DOMAIN/g" nginx/default.conf \
+  && sed -i "s/<domain>/$DOMAIN/g" config.production.json \
   && echo 'Installing Docker...' \
   && sudo yum remove -y docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine \
   && sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo \
@@ -49,6 +51,6 @@ if [ "$1" == "setup" ]; then
   && sudo docker-compose up -d nginx \
   && echo 'Done! 🎉' \
   && echo 'by Rafael Correa Gomes and Woosung Choi' \
-  && echo 'Access your ghost: http://localhost:'$WEB_PORT \
-  && echo 'Access your ghost admin panel: http://localhost:'$WEB_PORT'/ghost';
+  && echo 'Access your ghost: http://'$DOMAIN':'$WEB_PORT \
+  && echo 'Access your ghost admin panel: http://'$DOMAIN':'$WEB_PORT'/ghost';
 fi
