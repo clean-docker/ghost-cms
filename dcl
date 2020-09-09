@@ -23,7 +23,7 @@ if [ "$1" == "setup" ]; then
   && mv docker-compose.yml docker-compose.ssl.yml \
   && mv docker-compose.local.yml docker-compose.yml \
   && mv config.production.json config.production.json.bak \
-  && mv config.local.json config.production.jsonl \
+  && mv config.local.json config.production.json \
   && sed -i "s/<port>/$WEB_PORT/g" docker-compose.yml \
   && sed -i "s/<domain>/$DOMAIN/g" nginx/default.conf \
   && echo 'Installing Docker...' \
