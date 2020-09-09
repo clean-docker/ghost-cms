@@ -29,7 +29,7 @@ Then copy this command below and **change the mydomain.com to your domain** and 
 ### For Ubuntu 20.04 LTS users
 
 ```bash
-sudo apt update -y && sudo apt upgrade -y && sudo apt install curl git -y && sudo apt autoremove -y
+sudo apt update -y && sudo apt upgrade -y && sudo apt install curl git cron -y && sudo apt autoremove -y
 ```
 
 ```bash
@@ -39,7 +39,7 @@ curl -s https://raw.githubusercontent.com/woosungchoi/ghost-cms/master/dc | bash
 ### For Centos 8 users
 
 ```bash
-sudo yum -y update && sudo yum install -y curl git
+sudo yum -y update && sudo yum install -y curl git crontabs
 ```
 
 ```bash
