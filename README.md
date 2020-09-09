@@ -22,7 +22,9 @@ These are some reassons why use this Docker Compose in your production environme
 
 ## How start using this source?
 
-Then copy this command below and **change the mydomain.com to your domain** and **change the email@email.com to your email address** and run it inside your new server. Make sure that your domain is pointing to your server IP.
+Make sure that your `domain` and `www.domain` are pointing to your server IP.
+
+Then copy this command below and **change the mydomain.com to your domain** and **change the email@email.com to your email address** and run it inside your new server. 
 
 ### For Ubuntu 20.04 LTS users
 
