@@ -26,6 +26,7 @@ if [ "$1" == "setup" ]; then
   && mv config.local.json config.production.json \
   && sed -i "s/<port>/$WEB_PORT/g" docker-compose.yml \
   && sed -i "s/<domain>/$DOMAIN/g" nginx/default.conf \
+  && sed -i "s/<port>/$WEB_PORT/g" config.production.json \
   && sed -i "s/<domain>/$DOMAIN/g" config.production.json \
   && echo 'Installing Docker...' \
   && sudo yum remove -y docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine \

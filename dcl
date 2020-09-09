@@ -26,6 +26,7 @@ if [ "$1" == "setup" ]; then
   && mv config.local.json config.production.json \
   && sed -i "s/<port>/$WEB_PORT/g" docker-compose.yml \
   && sed -i "s/<domain>/$DOMAIN/g" nginx/default.conf \
+  && sed -i "s/<port>/$WEB_PORT/g" config.production.json \
   && sed -i "s/<domain>/$DOMAIN/g" config.production.json \
   && echo 'Installing Docker...' \
   && sudo apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y \
@@ -52,6 +53,6 @@ if [ "$1" == "setup" ]; then
   && sudo docker-compose up -d nginx \
   && echo 'Done! 🎉' \
   && echo 'by Rafael Correa Gomes and Woosung Choi' \
-  && echo 'Access your ghost: http://localhost:'$WEB_PORT \
-  && echo 'Access your ghost admin panel: http://localhost:'$WEB_PORT'/ghost';
+  && echo 'Access your ghost: http://'$DOMAIN':'$WEB_PORT \
+  && echo 'Access your ghost admin panel: http://'$DOMAIN':'$WEB_PORT'/ghost';
 fi
