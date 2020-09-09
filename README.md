@@ -48,20 +48,27 @@ curl -s dcc https://raw.githubusercontent.com/woosungchoi/ghost-cms/master/dcc |
 
 ## How start using locally?
 
-In your local environment you need to have installed:
-
-- Docker
-- Docker Compose
-
-After clone this repository, you can access the `dev` folder to be able to run the local dev environment using this command below.
+### For Ubuntu 20.04 LTS users
 
 ```bash
-git clone https://github.com/woosungchoi/ghost-cms.git ghost
-cd ghost/dev
-docker-compose up -d
+sudo apt update -y && sudo apt upgrade -y && sudo apt install curl git -y && sudo apt autoremove -y
 ```
 
-🎉Done! Access your https://localhost/ghost to access the admin panel and create your account.
+```bash
+curl -o dcl https://raw.githubusercontent.com/woosungchoi/ghost-cms/master/dcl && bash dcl setup && rm -f dcl
+```
+
+### For Centos 8 users
+
+```bash
+sudo yum -y update && sudo yum install -y curl git
+```
+
+```bash
+curl -o dccl https://raw.githubusercontent.com/woosungchoi/ghost-cms/master/dccl && bash dccl setup && rm -f dccl
+```
+
+🎉Done! Access your https://localhost:your_port/ghost to access the admin panel and create your account.
 
 ## Commands
 

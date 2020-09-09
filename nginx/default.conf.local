@@ -1,0 +1,56 @@
+server {
+  listen 80;
+  listen [::]:80;
+  server_name <domain> www.<domain>;
+  client_max_body_size 20m;
+  server_tokens off;
+
+  access_log /var/log/nginx/access.log  main;
+  error_log /var/log/nginx/error.log;
+
+  location / {
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-Proto https;
+    proxy_pass http://ghost:2368;
+  }
+
+  # Cache Ghost Images
+  location ~ "/assets/images/(.*)-([a-z0-9]{10})\.(?:png|jpe?g|tiff)(.*)$" {
+    expires           max;
+    add_header        Cache-Control public;
+    add_header        Vary Accept;
+    access_log        off;
+  }
+
+  gzip on;
+  gzip_comp_level    5;
+  gzip_min_length    256;
+  gzip_proxied       any;
+  gzip_vary          on;
+  gzip_types
+  application/atom+xml
+  application/javascript
+  application/json
+  application/ld+json
+  application/manifest+json
+  application/rss+xml
+  application/vnd.geo+json
+  application/vnd.ms-fontobject
+  application/x-font-ttf
+  application/x-web-app-manifest+json
+  application/xhtml+xml
+  application/xml
+  font/opentype
+  image/bmp
+  image/svg+xml
+  image/x-icon
+  text/cache-manifest
+  text/css
+  text/plain
+  text/vcard
+  text/vnd.rim.location.xloc
+  text/vtt
+  text/x-component
+  text/x-cross-domain-policy;
+}
