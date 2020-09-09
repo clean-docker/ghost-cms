@@ -51,5 +51,6 @@ if [ "$1" == "setup" ]; then
   && sudo docker-compose up -d nginx \
   && echo 'Done! 🎉' \
   && echo 'by Rafael Correa Gomes and Woosung Choi' \
-  && echo 'Access your host: http://localhost:'$WEB_PORT;
+  && echo 'Access your ghost: http://localhost:'$WEB_PORT \
+  && echo 'Access your ghost admin panel: http://localhost:'$WEB_PORT'/ghost';
 fi
