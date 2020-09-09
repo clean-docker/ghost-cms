@@ -1,0 +1,27 @@
+{
+    "server": {
+        "port": 2368,
+        "host": "ghost"
+      },
+      "database": {
+        "client": "mysql",
+        "connection": {
+            "host": "db",
+            "user": "ghost",
+            "password": "ghost_db_password",
+            "database": "ghost_production",
+            "charset": "utf8"
+        }
+      },
+    "logging": {
+        "transports": [
+              "file",
+              "stdout"
+            ]
+      },
+    "process": "systemd",
+    "paths": {
+        "contentPath": "/var/lib/ghost/content"
+      }
+  }
+  
