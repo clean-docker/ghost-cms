@@ -3,8 +3,6 @@ server {
   listen [::]:80;
   server_name <domain> www.<domain>;
   client_max_body_size 20m;
-    
-  client_max_body_size 20m;
   server_tokens off;
 
   access_log /var/log/nginx/access.log  main;
