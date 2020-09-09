@@ -1,4 +1,5 @@
 {
+    "url": "http://<domain>",
     "server": {
         "port": 2368,
         "host": "ghost"
