@@ -22,9 +22,10 @@ if [ "$1" == "setup" ]; then
   && mv nginx/default.conf.local nginx/default.conf \
   && mv docker-compose.yml docker-compose.ssl.yml \
   && mv docker-compose.local.yml docker-compose.yml \
+  && mv config.production.json config.production.json.bak \
+  && mv config.local.json config.production.jsonl \
   && sed -i "s/<port>/$WEB_PORT/g" docker-compose.yml \
   && sed -i "s/<domain>/$DOMAIN/g" nginx/default.conf \
-  && sed -i "s/<domain>/$DOMAIN/g" config.production.json \
   && echo 'Installing Docker...' \
   && sudo yum remove -y docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine \
   && sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo \

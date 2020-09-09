@@ -22,9 +22,10 @@ if [ "$1" == "setup" ]; then
   && mv nginx/default.conf.local nginx/default.conf \
   && mv docker-compose.yml docker-compose.ssl.yml \
   && mv docker-compose.local.yml docker-compose.yml \
+  && mv config.production.json config.production.json.bak \
+  && mv config.local.json config.production.jsonl \
   && sed -i "s/<port>/$WEB_PORT/g" docker-compose.yml \
   && sed -i "s/<domain>/$DOMAIN/g" nginx/default.conf \
-  && sed -i "s/<domain>/$DOMAIN/g" config.production.json \
   && echo 'Installing Docker...' \
   && sudo apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y \
   && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - \
