@@ -18,8 +18,8 @@ if [ "$1" == "setup" ]; then
   read -p "[2/2] Which port do you want to access the web server on? (ex : 80) " WEB_PORT \
   && rm -rf ghost; git clone https://github.com/woosungchoi/ghost-cms ghost \
   && cd ghost \
-  && mv nginx/defaul.conf nginx/defaul.conf.production \
-  && mv nginx/defaul.conf.local nginx/defaul.conf \
+  && mv nginx/default.conf nginx/default.conf.production \
+  && mv nginx/default.conf.local nginx/default.conf \
   && mv docker-compose.yml docker-compose.ssl.yml \
   && mv docker-compose.local.yml docker-compose.yml \
   && sed -i "s/<port>/$WEB_PORT/g" docker-compose.yml \
