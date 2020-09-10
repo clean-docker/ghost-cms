@@ -46,7 +46,7 @@ sudo yum -y update && sudo yum install -y curl git crontabs
 curl -s dcc https://raw.githubusercontent.com/woosungchoi/ghost-cms/master/dcc | bash -s setup mydomain.com email@email.com
 ```
 
-## How start using locally or non ssl environments?
+## How start using localhost or non ssl environments?
 
 ### For Ubuntu 20.04 LTS users
 
