@@ -44,5 +44,5 @@ if [ "$1" == "setup" ]; then
   && echo 'Done! 🎉' \
   && echo 'by Rafael Correa Gomes and Woosung Choi' \
   && echo 'Access your ghost: http://'$DOMAIN':'$WEB_PORT \
-  && echo 'Access your ghost admin panel: http://'$DOMAIN':'$WEB_PORT'/ghost';
+  && echo 'Access your ghost admin page: http://'$DOMAIN':'$WEB_PORT'/ghost';
 fi
