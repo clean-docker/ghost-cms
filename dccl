@@ -39,7 +39,7 @@ if [ "$1" == "setup" ]; then
   && sudo docker-compose up -d db \
   && echo 'Waiting 10 secs for Mariadb to build databases...' \
   && sleep 10 \
-  && sudo docker-compose up -d ghost --no-deps \
+  && sudo docker-compose up -d --no-deps ghost \
   && echo 'Done! 🎉' \
   && echo 'by Rafael Correa Gomes and Woosung Choi' \
   && echo 'Access your ghost: http://'$DOMAIN':'$WEB_PORT \
