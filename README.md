@@ -24,6 +24,11 @@ These are some reassons why use this Docker Compose in your production environme
 
 Make sure that your `domain` and `www.domain` are pointing to your server IP.
 
+| Type | Name | Content |
+| - | - | - |
+| A | domain.com | 123.123.123.123 |
+| A | www | 123.123.123.123 |
+
 Then copy this command below and **change the mydomain.com to your domain** and **change the email@email.com to your email address** and run it inside your new server. 
 
 ### For Ubuntu 20.04 LTS users
