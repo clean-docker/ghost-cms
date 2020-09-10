@@ -24,8 +24,9 @@ if [ "$1" == "setup" ]; then
   && sed -i "s/<domain>/$DOMAIN/g" docker-compose.yml \
   && echo 'Installing Docker...' \
   && sudo yum remove -y docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine \
+  && sudo dnf install -y https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm \
   && sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo \
-  && sudo dnf install -y --nobest docker-ce docker-ce-cli containerd.io \
+  && sudo dnf install -y docker-ce docker-ce-cli \
   && sudo systemctl start docker && sudo systemctl enable --now docker \
   && if [ ! -f /usr/bin/docker-compose ] ; then
         echo 'Installing Docker Compose...' \
