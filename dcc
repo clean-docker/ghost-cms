@@ -47,8 +47,8 @@ if [ "$1" == "setup" ]; then
   && echo "0 23 * * * docker start certbot && docker exec nginx nginx -s reload >> /var/log/docker_cron.log 2>&1" >> mycron \
   && sudo crontab mycron; rm mycron \
   && sudo chmod +x dc \
-  && echo 'Starting Docker certbot and db...' \
-  && sudo docker-compose up -d certbot db \
+  && echo 'Starting Docker db...' \
+  && sudo docker-compose up -d db \
   && echo 'Waiting 10 secs for Mariadb to build databases...' \
   && sleep 10 \
   && sudo docker-compose up -d ghost \
@@ -58,5 +58,6 @@ if [ "$1" == "setup" ]; then
   && sudo docker-compose up -d nginx \
   && echo 'Done! 🎉' \
   && echo 'by Rafael Correa Gomes and Woosung Choi' \
-  && echo 'Access your host: https://'$2;
+  && echo 'Access your ghost: https://'$2;
+  && echo 'Access your ghost admin page: https://'$2'/ghost';
 fi
