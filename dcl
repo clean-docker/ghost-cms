@@ -9,7 +9,7 @@ if [ "$1" == "stop" ]; then
 fi
 
 if [ "$1" == "update" ]; then    
-    sudo docker-compose pull && docker-compose up -d
+        sudo docker-compose pull && sudo docker-compose up -d && sudo docker image prune -f
 fi
 
 if [ "$1" == "setup" ]; then
