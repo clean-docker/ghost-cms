@@ -14,7 +14,7 @@ fi
 
 if [ "$1" == "setup" ]; then
   echo 'Setting system...' \
-  && read -p "[1/2] Enter your domain (ex : mydomain.com) : " DOMAIN
+  && read -p "[1/2] Enter your domain (ex : mydomain.com or localhost) : " DOMAIN
   read -p "[2/2] Which port do you want to access the web server on? (ex : 80) " WEB_PORT \
   && rm -rf ghost; git clone https://github.com/woosungchoi/ghost-cms ghost \
   && cd ghost \
