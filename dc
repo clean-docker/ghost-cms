@@ -60,5 +60,5 @@ if [ "$1" == "setup" ]; then
   && echo 'Done! 🎉' \
   && echo 'by Rafael Correa Gomes and Woosung Choi' \
   && echo 'Access your ghost: https://'$2;
-  && echo 'Access your ghost admin page: https://'$2'/ghost';
+  echo 'Access your ghost admin page: https://'$2'/ghost';
 fi
