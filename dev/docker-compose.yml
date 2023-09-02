@@ -25,8 +25,8 @@ services:
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - ../mysql:/var/lib/mysql
-      
- phpmyadmin:
+
+  phpmyadmin:
     depends_on:
       - db
     image: phpmyadmin/phpmyadmin
